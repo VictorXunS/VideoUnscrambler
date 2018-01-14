@@ -54,4 +54,4 @@ def storeFramesAsVideo(video_filename, final_permutation, frame_list):
     cv2.destroyAllWindows()
     video.release()
 
-    print "Computation done, video saved at: ", unscrambled_video_path
+    print "\nComputation done, video saved at: ", unscrambled_video_path

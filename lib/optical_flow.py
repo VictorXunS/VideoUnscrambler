@@ -7,6 +7,7 @@
 import numpy as np
 import cv2
 import os
+import sys
 from parameters import cfg
 from lib.imutils import convertFramesToGrayscale, resizeFrames
 
@@ -61,7 +62,13 @@ def computeOpticalFlowDistances(video_filename, scenes_dict, frame_list):
         OF_distances_frame = np.zeros((nbFramesInScene, nbFramesInScene))
         # Loop over pair of frames in scene:
         for frame_i in range(nbFramesInScene):
-            print frame_i, ' / ', nbFramesInScene
+
+            # Print computation advancement
+            pctg = int(float(frame_i+1) / nbFramesInScene * 20)
+            sys.stdout.write('\r')
+            sys.stdout.write("[%-20s] %d%%" % ('='*pctg, 5*pctg))
+            sys.stdout.flush()
+
             # Optical flow is not symmetric so need full double loop
             for frame_ii in range(nbFramesInScene):
 
