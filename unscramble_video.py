@@ -9,6 +9,7 @@ import cv2
 import random
 
 from parameters import cfg
+from lib.file_manager import archivePreviousRun
 from lib.video_handler import readFramesFromVideo, storeFramesAsVideo
 from lib.visual_hash import getVisualHashes, clusterScenesUsingHash, removeBadScenes
 from lib.optical_flow import getOpticalFlowDistances
@@ -18,13 +19,16 @@ from lib.permutate_scenes import permutateScenes
 
 def unscrambleVideo(corrupted_video_filename, verbose):
 
+    # Copy previous run data into an archive folder
+    if cfg.ARCHIVE_PREVIOUS_RUN:
+        archivePreviousRun(corrupted_video_filename)
+
     # Read video from file and store frames in a numpy array
     frame_list, nbFrames = readFramesFromVideo(corrupted_video_filename)
 
     if cfg.SHUFFLE_INPUT_FRAMES:
         random.seed(cfg.SHUFFLE_SEED)
         random.shuffle(frame_list)
-        print frame_list
 
     ##### CLUSTERING FRAMES INTO SCENES
     # Get perceptual hashes of each frame in video
@@ -67,8 +71,6 @@ def unscrambleVideo(corrupted_video_filename, verbose):
 
     # Save new frames permutation as video
     storeFramesAsVideo(corrupted_video_filename, final_permutation, frame_list)
-
-    print "Computation done"
 
 if __name__ == '__main__':
     nbArguments = len(sys.argv)

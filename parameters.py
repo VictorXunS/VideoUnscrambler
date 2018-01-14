@@ -18,10 +18,11 @@ cfg.DATA_FOLDER = os.path.join(current_path, 'Data/')
 cfg.OUTPUT_VIDEOS_FOLDER = os.path.join(current_path, 'Output/')
 
 ##### GENERAL #####
-cfg.REMOVE_BAD_SCENES = True
-cfg.MINIMAL_NB_FRAMES_PER_SCENE = 5
-cfg.SHUFFLE_INPUT_FRAMES = True
+cfg.ARCHIVE_PREVIOUS_RUN = False
+cfg.SHUFFLE_INPUT_FRAMES = False # Further shuffle input frames
 cfg.SHUFFLE_SEED = 42
+cfg.REMOVE_BAD_SCENES = True # Remove scenes that have to few frames
+cfg.MINIMAL_NB_FRAMES_PER_SCENE = 5
 
 ##### OPTICAL FLOW #####
 cfg.RESIZE_FRAMES_FOR_CORNERS = False

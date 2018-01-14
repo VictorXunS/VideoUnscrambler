@@ -1,4 +1,4 @@
 Data/
 Output/
 
-.pyc
+*.pyc

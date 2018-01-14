@@ -24,7 +24,6 @@ def getVisualHashes(video_filename, frame_list):
     '''
 
     hash_folder = cfg.DATA_FOLDER + os.path.splitext(video_filename)[0]
-    # hash_folder = cfg.HASHES_FOLDER + os.path.splitext(video_filename)[0]
 
     # Try to load the files if they are saved
     if os.path.exists(hash_folder + '/aHash.npy'):
