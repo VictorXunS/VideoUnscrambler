@@ -39,6 +39,9 @@ def storeFramesAsVideo(video_filename, final_permutation, frame_list):
     Store list of images as video
     '''
 
+    if not os.path.exists(cfg.OUTPUT_VIDEOS_FOLDER):
+        os.mkdir(cfg.OUTPUT_VIDEOS_FOLDER)
+
     unscrambled_video_path = cfg.OUTPUT_VIDEOS_FOLDER + video_filename
     # Change file extension to avi
     unscrambled_video_path = os.path.splitext(unscrambled_video_path)[0] + '.avi'
