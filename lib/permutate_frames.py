@@ -4,6 +4,7 @@
 # Written by Victor SUO
 # Email: xunvictor.suo@gmail.com
 
+import numpy as np
 from tsp_solver.greedy import solve_tsp
 
 def permutateFramesWithinScenes(distances_dict):
@@ -14,8 +15,8 @@ def permutateFramesWithinScenes(distances_dict):
     Solver used is greedy traveling salesman
     '''
 
-    solution = {}
+    solutions = {}
     for scene in distances_dict:
-        solution[scene] = solve_tsp(distances_dict[scene])
+        solutions[scene] = solve_tsp(distances_dict[scene])
 
-    return solution
+    return solutions

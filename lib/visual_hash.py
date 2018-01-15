@@ -26,39 +26,17 @@ def getVisualHashes(video_filename, frame_list):
     hash_folder = cfg.DATA_FOLDER + os.path.splitext(video_filename)[0]
 
     # Try to load the files if they are saved
-    if os.path.exists(hash_folder + '/aHash.npy'):
-        aHash_list = np.load(hash_folder + '/aHash.npy')
-        print 'aHash loaded from file'
+    hash_filename = cfg.HASH_NAME + '.npy'
+    hash_filepath = os.path.join(hash_folder, hash_filename)
+    if os.path.exists(hash_filepath):
+        visual_hash_list = np.load(hash_filepath)
+        print hash_filename + ' loaded from file'
     else: # Or compute them
-        aHash_list = [imgh.average_hash(Image.fromarray(frame)) for frame in frame_list]
-        np.save(hash_folder + '/aHash', aHash_list)
-        print "aHash computed"
-    
-    if os.path.exists(hash_folder + '/pHash.npy'):
-        pHash_list = np.load(hash_folder + '/pHash.npy')
-        print 'pHash loaded from file'
-    else:
-        pHash_list = [imgh.phash(Image.fromarray(frame)) for frame in frame_list]
-        np.save(hash_folder + '/pHash', pHash_list)
-        print "pHash computed"
-    
-    if os.path.exists(hash_folder + '/dHash.npy'):
-        dHash_list = np.load(hash_folder + '/dHash.npy')
-        print 'dHash loaded from file'
-    else:
-        dHash_list = [imgh.dhash(Image.fromarray(frame)) for frame in frame_list]
-        np.save(hash_folder + '/dHash', dHash_list)
-        print "dHash computed"
-    
-    if os.path.exists(hash_folder + '/wHash.npy'):
-        wHash_list = np.load(hash_folder + '/wHash.npy')
-        print 'wHash loaded from file'
-    else:
-        wHash_list = [imgh.whash(Image.fromarray(frame)) for frame in frame_list]
-        np.save(hash_folder + '/wHash', wHash_list)
-        print "wHash computed"
+        visual_hash_list = [imgh.average_hash(Image.fromarray(frame)) for frame in frame_list]
+        np.save(hash_filepath , visual_hash_list)
+        print hash_filename + " computed"
 
-    return aHash_list, pHash_list, dHash_list, wHash_list
+    return visual_hash_list
 
 def clusterScenesUsingHash(list_hashes, nbFrames):
 
@@ -91,8 +69,11 @@ def clusterScenesUsingHash(list_hashes, nbFrames):
     # Remove scenes that have too few number of frames
     if cfg.REMOVE_BAD_SCENES:
         scenes_dict, nbScenes = removeBadScenes(scenes_dict)
+    else:
+        nbScenes = len(scenes_dict)
 
-    return scenes_dict, nbScenes
+    return scenes_dict, nbScenes, hash_distances
+
 
 def convertClusterToDict(clusters, nbFrames):
     

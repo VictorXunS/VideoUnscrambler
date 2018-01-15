@@ -7,6 +7,7 @@
 import sys
 import cv2
 import random
+import numpy as np
 
 from parameters import cfg
 from lib.file_manager import archivePreviousRun
@@ -32,16 +33,21 @@ def unscrambleVideo(corrupted_video_filename, verbose):
 
     ##### CLUSTERING FRAMES INTO SCENES
     # Get perceptual hashes of each frame in video
-    aHash_list, pHash_list, dHash_list, wHash_list =\
-                        getVisualHashes(corrupted_video_filename, frame_list)
+    visual_hash_list = getVisualHashes(corrupted_video_filename, frame_list)
 
     # Hierarchical clustering of frames in scenes based on hash distances
-    scenes_dict, nbScenes = clusterScenesUsingHash(aHash_list, nbFrames)
-    # scenes_dict, nbScenes = clusterScenesUsingHash(pHash_list, nbFrames)
-    # scenes_dict, nbScenes = clusterScenesUsingHash(dHash_list, nbFrames)
-    # scenes_dict, nbScenes = clusterScenesUsingHash(wHash_list, nbFrames)
+    scenes_dict, nbScenes, hash_distances = clusterScenesUsingHash(visual_hash_list, nbFrames)
     if verbose:
         print "Clusterized scenes:\n", scenes_dict
+
+
+    # # Result when only hash distance matrix is used
+    # Comment next two function if you want to test this
+    # hash_distances_dict = {}
+    # hash_distances_dict[1] = hash_distances
+    # permutated_frames_dict = permutateFramesWithinScenes(hash_distances_dict)
+    # scenes_dict = {}
+    # scenes_dict[1] = range(len(frame_list))
 
 
     ##### OPTIMIZING FRAMES PERMUTATION WITHIN EACH SCENE

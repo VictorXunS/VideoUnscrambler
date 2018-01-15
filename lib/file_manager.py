@@ -12,6 +12,10 @@ from parameters import cfg
 
 def archivePreviousRun(video_filename):
 
+    '''
+    Save previous computation files in a separate folder so that they are not reused
+    '''
+
     archive_name = time.strftime("%d_%m_%Y;%H_%M_%S")
 
     folder_name = os.path.join(cfg.DATA_FOLDER, os.path.splitext(video_filename)[0])

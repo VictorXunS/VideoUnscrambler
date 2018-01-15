@@ -18,6 +18,7 @@ cfg.DATA_FOLDER = os.path.join(current_path, 'Data/')
 cfg.OUTPUT_VIDEOS_FOLDER = os.path.join(current_path, 'Output/')
 
 ##### GENERAL #####
+cfg.HASH_NAME = 'aHash' # aHash, pHash, dHash, wHash
 cfg.ARCHIVE_PREVIOUS_RUN = False
 cfg.SHUFFLE_INPUT_FRAMES = False # Further shuffle input frames
 cfg.SHUFFLE_SEED = 42
