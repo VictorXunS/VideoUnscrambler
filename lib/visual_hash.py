@@ -32,7 +32,14 @@ def getVisualHashes(video_filename, frame_list):
         visual_hash_list = np.load(hash_filepath)
         print hash_filename + ' loaded from file'
     else: # Or compute them
-        visual_hash_list = [imgh.average_hash(Image.fromarray(frame)) for frame in frame_list]
+        if cfg.HASH_NAME=='aHash':
+            visual_hash_list = [imgh.average_hash(Image.fromarray(frame)) for frame in frame_list]
+        elif cfg.HASH_NAME=='pHash':
+            visual_hash_list = [imgh.phash(Image.fromarray(frame)) for frame in frame_list]
+        elif cfg.HASH_NAME=='dHash':
+            visual_hash_list = [imgh.dhash(Image.fromarray(frame)) for frame in frame_list]
+        elif cfg.HASH_NAME=='wHash':
+            visual_hash_list = [imgh.whash(Image.fromarray(frame)) for frame in frame_list]
         np.save(hash_filepath , visual_hash_list)
         print hash_filename + " computed"
 
