@@ -22,7 +22,7 @@ pip install imagehash
 python unscramble_video.py corrupted_video.mp4
 ```
 
-The output video will be saved at project_root/Output/video_name.ext.  
+The output video will be saved at project_root/Output/video_name.ext.
 Some computation files will be generated and put inside the folder project_root/Data/VideoName/
 
 ## Data
@@ -31,13 +31,13 @@ https://drive.google.com/open?id=1ezOLuWGJs_IIQO84N43CJrXX3gNasX1g
 
 ## A note on parameters
 
-This option automatically archives previous computations files and allows to compute from scratch.  
+This option automatically archives previous computations files and allows to compute from scratch.
 If set at False and previous computation files exist, they will be used instead of recomputed.
 ```
 cfg.ARCHIVE_PREVIOUS_RUN (bool)
 ```
 
-This option allows to further shuffle input data.  
+This option allows to further shuffle input data.
 In particular, it allows to test the algorithm with uncorrupted videos.
 ```
 cfg.SHUFFLE_INPUT_FRAMES (bool)
@@ -50,6 +50,6 @@ cfg.SHUFFLE_INPUT_FRAMES (bool)
 
 ## Acknowledgments
 
-OpenCV Optical flow tutorial (https://docs.opencv.org/3.3.1/d7/d8b/tutorial_py_lucas_kanade.html)  
-ImageHash library (https://pypi.python.org/pypi/ImageHash)  
-Travelling salesman greedy algorithm (https://github.com/dmishin/tsp-solver)  
+OpenCV Optical flow tutorial (https://docs.opencv.org/3.3.1/d7/d8b/tutorial_py_lucas_kanade.html)
+ImageHash library (https://pypi.python.org/pypi/ImageHash)
+Travelling salesman greedy algorithm (https://github.com/dmishin/tsp-solver)

@@ -7,6 +7,7 @@
 import numpy as np
 import cv2
 
+
 def resizeFrames(frame_list, target_size):
 
     '''
@@ -20,7 +21,7 @@ def resizeFrames(frame_list, target_size):
     frame_list_resized = []
     for frame in frame_list:
         frame_list_resized.append(cv2.resize(frame, None, None, fx=im_scale,
-                                fy=im_scale, interpolation=cv2.INTER_LINEAR))
+                                        fy=im_scale, interpolation=cv2.INTER_LINEAR))
 
     return frame_list_resized
 

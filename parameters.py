@@ -25,6 +25,11 @@ cfg.SHUFFLE_SEED = 42
 cfg.REMOVE_BAD_SCENES = True # Remove scenes that have to few frames
 cfg.MINIMAL_NB_FRAMES_PER_SCENE = 5
 
+##### TSP SOLVER #####
+cfg.TSP_SOLVER = 'greedy' # greedy, 2opt
+cfg.USE_DUMMY_NODE = False # Dummy node to simulate acyclic TSP
+cfg.REFINE_GREEDY_WITH_2OPT = True # Use greedy, then 2opt
+
 ##### OPTICAL FLOW #####
 cfg.RESIZE_FRAMES_FOR_CORNERS = False
 cfg.FRAMES_SIZE_FOR_CORNERS = 600
